@@ -29,7 +29,7 @@ const memoryGame = new MemoryGame(cards);
 
 window.addEventListener('load', (event) => {
   let html = '';
-  memoryGame.shuffleCards();
+  // memoryGame.shuffleCards();
   memoryGame.cards.forEach((pic) => {
     html += `
       <div class="card" data-card-name="${pic.name}">
@@ -60,17 +60,17 @@ window.addEventListener('load', (event) => {
         }
         else{ memoryGame.pickedCards = [];  }
         
-        // console.log("Pairs Clicked: ",memoryGame.pairsClicked, '\n', "Pairs Guessed: ", memoryGame.pairsGuessed);
+        console.log("Pairs Clicked: ",memoryGame.pairsClicked, '\n', "Pairs Guessed: ", memoryGame.pairsGuessed);
         pairsClicked.innerHTML = memoryGame.pairsClicked
         pairsGuessed.innerHTML = memoryGame.pairsGuessed
       }
-      card.getAttribute("data-card-name");
       // TODO: write some code here
-      
-      // setTimeout(() => {
-      //   card.classList.toggle("turned")
-      // }, 3000)
       console.log(`Card clicked:`, card);
+      if(memoryGame.checkIfFinished()){
+        setTimeout(()=> {
+          alert('YOU WIN!!!');
+        },500);
+      }
     });
   });
 });
